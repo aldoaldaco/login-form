@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="controll">
+        <h2 class="tittle">login.com</h2>
+        <button id="signBtn" class="signBtn" onclick="" style="width:auto;">Signup</button>
+        <button id="loginBtn" class="loginBtn" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">Login</button>
+    </div>
+
+    <div id="loginForm" class="modal">
+        <div class="container">
+            <h1 class="formTittle">Login</h1>
+        </div>
+        <div class="modal-content animate">
+            <div id="loader"></div>
+            <div class="imgcontainer">
+              <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+              <img src="img/avatar.png" alt="Avatar" class="avatar">
+            </div>
+            <div class="container">
+              <label for="name"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" id="nameLog" name="name" required>
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" id="pswLog" name="psw" required>
+              <button id="submitLoginBtn" class="submitBtn" type="button">Login</button>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+              <button id="cancelLoginBtn" class="cancelBtn" type="button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="signForm" class="modal">
+        <div class="container">
+          <h1 class="formTittle">Signup</h1>
+        </div>
+        <div class="modal-content animate">
+            <div id="loader"></div>
+            <div class="imgcontainer">
+              <span onclick="document.getElementById('signForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+              <img src="img/avatar.png" alt="Avatar" class="avatar">
+            </div>
+            <div class="container">
+              <label for="uname"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" id="nameSign" name="name" required>
+              <label for="mail"><b>E-mail</b></label>
+              <input type="text" placeholder="Enter email" id="mailSign" name="mail" required>
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" id="pswSign" name="psw" required>
+              <label for="repsw"><b>Confirm Password</b></label>
+              <input type="password" placeholder="Re-enter Password" id="repswSign" name="repsw" required>
+              <button id="submitSignBtn" class="submitBtn" type="button">Register</button>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+              <button id="cancelSignBtn" class="cancelBtn" type="button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="script.js"></script>
+</html>

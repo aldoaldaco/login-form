@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="loader"></div>
+        <div id="controll">
+            <h1 class="tittle">Welcome to the jungle</h1>
+            <button id="submitBtn" class="backBtn">Logout</button>
+        </div>
+    </body>
+    <script>
+    (function(){
+        let logout =  document.getElementById('submitBtn');
+        logout.onclick = function(){
+            window.location = "index.html";
+        }
+    })();
+    </script>
+</html>

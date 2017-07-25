@@ -46,7 +46,7 @@ button:hover {
 }
 .submitBtn{
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 15px;
     background-color: #3B5998;
     width: 100%!important;
 }
@@ -69,7 +69,7 @@ input{
 /* Center the image and position the close button */
 .imgcontainer {
     text-align: center;
-    margin: 20px 0 12px 0;
+    margin: 20px 0 0 0;
     position: relative;
 }
 

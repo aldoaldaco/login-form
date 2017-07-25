@@ -1,19 +1,5 @@
 (function(doc,win){
     'use strict';
-    //Div to load
-    let i = 0, random = 0, hour = new Date();
-    let div = document.getElementById('loader');
-
-    function fastLoad(){
-        if(i<=90){
-            i += 10;
-            div.style.width = (i) + "%";
-            setTimeout(fastLoad(),100);
-        } else {
-            console.log("Termino el proceso");
-        }
-    }
-
     let loginModal = document.getElementById('loginForm');
     let signModal = document.getElementById('signForm');
     let loginBtn = document.getElementById('loginBtn');
@@ -22,19 +8,18 @@
     let submitSignBtn = document.getElementById('submitSignBtn');
     let cancelLoginBtn = document.getElementById('cancelLoginBtn');
     let cancelSignBtn = document.getElementById('cancelSignBtn');
-    let backBtn = document.getElementById('backBtn');
 
     class User{
-        constructor(name,mail,password,confirm) {
+        constructor(name,email,password,confirm) {
             this.name = name;
-            this.mail = mail;
+            this.email = email;
             this.password = password;
             this.confirm = confirm;
         }
 
         validateName(){
-            if(String(this.name).length <= 8){
-                console.log("Invalid Name");
+            if(String(this.name).length <= 3){
+                console.log("Name must be longer then 3 characters");
                 return false;
             } else {
                 console.log("Valid Name");
@@ -42,13 +27,13 @@
             }
         }
 
-        validateMail(){
-            let validMail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-            if(!(validMail.test(this.mail))){
-                console.log("Invalid Mail");
+        validatEmail(){
+            let validemail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            if(!(validemail.test(this.email))){
+                console.log("Invalid email");
                 return false;
             } else {
-                console.log("Valid Mail");
+                console.log("Valid email");
                 return true;
             }
         }
@@ -89,83 +74,60 @@
                 return true;
             }
         }
-
-        signup(name,mail,password,confirm){
-            if(validateMail() && validatePasswords() && validatePassword() ){
-                if(this.name==name && this.password==password){
-                    console.log("Good work dude");
-                } else {
-                    console.log("User or Password incorrect");
-                }
-            }
-        }
-
-        login(name,password){
-            if(validateMail() && validatePasswords()){
-                if(this.name==name && this.password==password){
-                    console.log("Good work dude");
-                } else {
-                    console.log("User or Password incorrect");
-                }
-            }
-        }
     }
 
     User.prototype.setName = function (name) {
         this.name = name;
     };
-    User.prototype.getName = function (name) {
+    User.prototype.getName = function () {
         return this.name;
     };
 
-    User.prototype.setMail = function (mail) {
-        this.mail = mail;
+    User.prototype.setEmail = function (email) {
+        this.email = email;
     };
-    User.prototype.getMail = function (name) {
-        return this.mail;
+    User.prototype.getEmail = function () {
+        return this.email;
     };
 
     User.prototype.setPassword = function (password) {
         this.password = password;
     };
-    User.prototype.getPassword = function (password) {
+    User.prototype.getPassword = function () {
         return this.password;
     };
 
     User.prototype.setConfirm = function (confirm) {
         this.confirm = confirm;
     };
-    User.prototype.etConfirm = function (confirm) {
+    User.prototype.etConfirm = function () {
         return this.confirm;
     };
 
     const user = new User("","","","");
-    const user1 = new User("aldo1","aldo1_aldaco@hotmail.con","abcd1","abcd1");
-    const user2 = new User("aldo2","aldo2_aldaco@hotmail.con","abcd2","abcd2");
-    const user3 = new User("aldo3","aldo3_aldaco@hotmail.con","abcd3","abcd3");
-    const user4 = new User("aldo4","aldo4_aldaco@hotmail.con","abcd4","abcd4");
-    const user5 = new User("aldo5","aldo5_aldaco@hotmail.con","abcd5","abcd5");
+    const user1 = new User("aldo1","aldo1_aldaco@gmail.com","12345678","12345678");
+    const user2 = new User("aldo2","aldo2_aldaco@gmail.com","12345678","12345678");
+    const user3 = new User("aldo3","aldo3_aldaco@gmail.com","12345678","12345678");
+    const user4 = new User("aldo4","aldo4_aldaco@gmail.com","12345678","12345678");
+    const user5 = new User("aldo5","aldo5_aldaco@gmail.com","12345678","12345678");
     const users = Array.of(user1,user2,user3,user4,user5);
 
-    //LoginUP
+    //Login
     if(submitLoginBtn != "undefined"){
         submitLoginBtn.onclick = function(){
             let n = document.getElementById('nameLog').value;
             let p = document.getElementById('pswLog').value;
+            let validator = (n.length > 0 && p.length > 0) ? true : false;
             user.setName(n);user.setPassword(p);
-            let validator = (n.length > 0 && p.length > 0)?true:false;
             if(validator==false){
                 alert("There are some errors");
             } else {
-                alert("You are not register, go to signup");
-                setTimeout(fastLoad(),300);
                 for (let i of users) {
-                    console.log(i.getName() == user.getName());
                     if((i.getName() == user.getName()) && (i.getPassword() == user.getPassword())){
-                        console.log("Welcome");
+                        console.log("Welcome again");
                         window.location = "welcome.html";
                     } else {
-                        console.log("This account is not register");
+                        console.log("This account is not register, go to Signup view");
                         loginModal.style.display = "none";
                         signModal.style.display = "block";
                     }
@@ -178,23 +140,26 @@
     if(submitSignBtn != "undefined"){
         submitSignBtn.onclick = function(){
             let n = document.getElementById('nameSign').value;
-            let m = document.getElementById('mailSign').value;
+            let m = document.getElementById('emailSign').value;
             let p = document.getElementById('pswSign').value;
             let c = document.getElementById('repswSign').value;
-            user.setName(n);user.setMail(m);user.setPassword(p);user.setConfirm(c);
-            let validator = user.validateName() && user.validateMail() && user.validatePassword() && user.validatePasswords();
+            let flag = false;
+            user.setName(n);user.setEmail(m);user.setPassword(p);user.setConfirm(c);
+            let validator = user.validateName() && user.validatEmail() && user.validatePassword() && user.validatePasswords();
             if(validator==false){
                 alert("There are some errors");
             } else {
-                setTimeout(fastLoad(),300);
                 for (let i of users) {
-                    if((i.getName() == user.getName()) || (i.getMail() == user.getMail())){
-                        console.log("Username or Mail not available");
-                    } else {
-                        console.log("Sign & Login succesfull");
-                        users.push(user);
-                        window.location = "welcome.html";
+                    if(i.getEmail() == user.getEmail()){
+                        console.log("The account is already exist");
+                        flag = true;
                     }
+                }
+                if(flag){
+                    console.log("The account is already in use");
+                } else {
+                    console.log("Welcome");
+                    window.location = "welcome.html";
                 }
             }
         }
